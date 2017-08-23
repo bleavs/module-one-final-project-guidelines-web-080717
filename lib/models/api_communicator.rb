@@ -32,9 +32,10 @@ def self.get_episodes
 
   episode_hash = JSON.parse(all_episodes)
 
-  episode_hash.each do |episode|
-    Episode.find_or_create_by(name: episode["name"], season: episode["season"], episode_in_season: episode["nr"])
+  eps = episode_hash.each do |episode|
+    Episode.find_or_create_by(name: episode["name"], season: episode["season"], episode_in_season: episode["nr"], director: episode["director"], airdate: episode["airDate"])
   end
+  eps.order(:season, :episode_in_season)
 
 end
 
@@ -55,7 +56,7 @@ def self.get_char_episodes
 
     epcharacters = episode["characters"]
 
-    epcharacters.each do |char|
+  epcharacters.each do |char|
       CharacterEpisode.find_or_create_by(character_id: (Character.find_by(name: char).id), episode_id: Episode.find_by(name: episode["name"]).id)
     end
   end

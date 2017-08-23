@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
+ActiveRecord::Schema.define(version: 4) do
 
   create_table "character_episodes", force: :cascade do |t|
     t.integer "character_id"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 3) do
     t.string "name"
     t.integer "season"
     t.integer "episode_in_season"
+    t.string "director"
+    t.date "airdate"
   end
 
 end
