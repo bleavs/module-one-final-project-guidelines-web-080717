@@ -1,11 +1,11 @@
 require 'pry'
 
+
 class CommandLineInterface
 
 
   def greet
-    puts "Welcome to the GameOfThrones database, your spot for searching for character's and there episode appearances."
-
+    puts "Welcome to the GameOfThrones database, your spot for searching for character's and their episode appearances.".blink.blue
   end
 
   def gets_user_input
@@ -13,13 +13,13 @@ class CommandLineInterface
           If you would like to know the character who appears in the most episodes please press (2).
           If you would like to know the episode that features the greatest number of characters please press (3).
           If you would like to know the characters in a specific house please press (4).
-          If you would like to know the episodes that have appearances from a specific house please press (5)"
+          If you would like to know the episodes that have appearances from a specific house please press (5)".bold.blue
     input = gets.chomp
   end
 
   def find_character_episodes
 
-    puts "Please enter the name of a character"
+    puts "Please enter the name of a character".bold.blue
 
     character_name = gets.chomp
 
@@ -35,7 +35,7 @@ class CommandLineInterface
   end
 
   def find_house_episodes
-    puts "Please enter the name of a house"
+    puts "Please enter the name of a house".bold.blue
     house_name = gets.chomp
 
     if Character.where(house: "House #{house_name}")
@@ -58,7 +58,7 @@ class CommandLineInterface
             try =  sorted.each {|episode| puts "Episode Name: #{episode.name}, Season: #{episode.season}, Episode: #{episode.episode_in_season}, Director: #{episode.director}, Airdate: #{episode.airdate}"}
             go_again
           else
-            puts "That house has not appeared in any episodes"
+            puts "That house has not appeared in any episodes!".bold.red
             go_again
 
           end
@@ -75,38 +75,40 @@ class CommandLineInterface
 ####
 
   def find_house_characters
-    puts "Please enter the name of a house"
+    puts "Please enter the name of a house".bold.blue
     house_name = gets.chomp
     if Character.where(house: "House #{house_name}").size > 0
        puts Character.where(house: "House #{house_name}").pluck(:name)
        go_again
      else
-       puts "That is not a recognized house"
-       try_again
+       puts "That is not a recognized house!".bold.red
+       puts "SHAME...SHAME...SHAME..SHAME...SHAME...SHAME..SHAME...SHAME...SHAME!!!".blink.red
+       go_again
      end
    end
 
 
 
   def try_again
-    puts "The input of the name of the character you searched is not in our database or you pressed an incorrect number. Please try again."
-
+    puts "The input of the name of the character you searched is not in our database or you pressed an incorrect number. Please try again.".bold.red
+    puts "SHAME...SHAME...SHAME..SHAME...SHAME...SHAME..SHAME...SHAME...SHAME!!!".blink.red
     go_again
 
 
   end
 
   def go_again
-    puts "If you would like to continue searching please press (y), otherwise press (n)"
+    puts "If you would like to continue searching please press (y), otherwise press (n)".bold.blue
     answer = gets.chomp
 
     if answer == "y"
       run
     elsif answer == "n"
-      puts "WHAT IS DEAD MAY NEVER DIE!"
+      puts "WHAT IS DEAD MAY NEVER DIE!".blink.red
 
     else       #answer == "n"
-      puts "The input of the name of the character or house you searched is not in our database or you pressed an incorrect number. Please try again."
+      puts "The input of the name of the character or house you searched is not in our database or you pressed an incorrect number. Please try again.".bold.red
+
       go_again
     end
 
