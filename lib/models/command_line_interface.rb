@@ -5,11 +5,12 @@ class CommandLineInterface
 
 
   def greet
-    puts "Welcome to the GameOfThrones database, your spot for searching for character's and their episode appearances.".blink.blue
+    puts "Welcome to the GameOfThrones database, your spot for searching for character's and their episode appearances.".bold
   end
 
   def gets_user_input
-    puts "If you would like to find a specific character's episode appearances please press (1).
+    puts "
+          If you would like to find a specific character's episode appearances please press (1).
           If you would like to know the character who appears in the most episodes please press (2).
           If you would like to know the episode that features the greatest number of characters please press (3).
           If you would like to know the characters in a specific house please press (4).
